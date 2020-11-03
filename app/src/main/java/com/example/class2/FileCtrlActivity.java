@@ -16,7 +16,7 @@ import java.io.IOException;
 public class FileCtrlActivity extends AppCompatActivity {
 
     Button Btn_FileWrite, Btn_FileRead, Btn_Save, Btn_Login;
-    EditText Et_UserID, Et_UserPWD, Et_LoginID, Et_LoginPWD;
+    EditText Et_UserID, Et_UserPWD, Et_UserName,Et_LoginID, Et_LoginPWD;
     int IDCount = 0;
     int PWDCount = 0;
 
@@ -42,6 +42,7 @@ public class FileCtrlActivity extends AppCompatActivity {
         Btn_Login = findViewById(R.id.btn_Login);
         Et_UserID = findViewById(R.id.et_UserID);
         Et_UserPWD = findViewById(R.id.et_UserPWD);
+        Et_UserName = findViewById(R.id.et_UserName);
         Et_LoginID = findViewById(R.id.et_LoginID);
         Et_LoginPWD = findViewById(R.id.et_LoginPWD);
 
@@ -95,35 +96,35 @@ public class FileCtrlActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
-                    FileOutputStream WritePI = openFileOutput("PI.txt", Context.MODE_PRIVATE);
-                    if(Et_UserID.length() < 1){
-                        Toast.makeText(getApplicationContext(), "아이디를 입력해 주세요.", Toast.LENGTH_SHORT).show();
-                    }
-                    else if(Et_UserPWD.length() < 1){
-                        Toast.makeText(getApplicationContext(), "비밀번호를 입력해 주세요.", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        if(Et_UserID.length() > 10) {
-                            Toast.makeText(getApplicationContext(), "10자리 이하로 입력해 주세요.", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            String sUser = setTenString(Et_UserID.getText().toString());
-                            WritePI.write(sUser.getBytes(), 0, sUser.length());
-                            //IDCount = (int)sUser.length();
-                        }
+                    FileOutputStream UsersFile = openFileOutput("Users.txt", Context.MODE_PRIVATE);
 
-                        if(Et_UserPWD.length() > 10){
-                            Toast.makeText(getApplicationContext(), "10자리 이하로 입력해 주세요.", Toast.LENGTH_SHORT).show();
-                        }
+                    if(Et_UserID.getText().length()<1 || Et_UserPWD.getText().length()<1 || Et_UserName.getText().length()<1)
+                        Toast.makeText(getApplicationContext(), "빈 칸을 모두 채워주세요!", Toast.LENGTH_LONG).show();
+                    else {
+                        if(Et_UserID.getText().length()>10)
+                            Toast.makeText(getApplicationContext(), "아이디를 10자 이내로 입력해주세요!", Toast.LENGTH_LONG).show();
+                        else if(Et_UserPWD.getText().length()>10)
+                            Toast.makeText(getApplicationContext(), "패스워드를 10자 이내로 입력해주세요!", Toast.LENGTH_LONG).show();
+                        else if( Et_UserName.getText().length()>10)
+                            Toast.makeText(getApplicationContext(), "이름을 10자 이내로 입력해주세요!", Toast.LENGTH_LONG).show();
                         else {
-                            String sPwd = setTenString(Et_UserPWD.getText().toString());
-                            WritePI.write(sPwd.getBytes(), 0, sPwd.length());
-                            //PWDCount = (int) sPwd.length();
+                            // 아이디 등록
+                            String sUser = Et_UserID.getText().toString() + ",";
+                            UsersFile.write(sUser.getBytes(), 0, sUser.length());
+                            // 비밀번호 등록
+                            String sPwd = Et_UserPWD.getText().toString() + ",";
+                            UsersFile.write(sPwd.getBytes(), 0, sPwd.length());
+                            // 이름 등록
+                            String sName = Et_UserName.getText().toString() + ",";
+                            UsersFile.write(sName.getBytes(), 0, sName.length());
+
+                            UsersFile.close();
+                            Toast.makeText(getApplicationContext(), "회원 등록 완료", Toast.LENGTH_LONG).show();
                         }
                     }
-
                 }
                 catch (IOException e){
+                    e.printStackTrace();
                 }
             }
         });
@@ -132,41 +133,28 @@ public class FileCtrlActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
-                    FileInputStream ReadPI = openFileInput("PI.txt");
-                    byte[] baUserID = new byte[10];
-                    byte[] baUserPWD = new byte[10];
-                    ReadPI.read(baUserID);
-                    ReadPI.read(baUserPWD);
+                    FileInputStream UsersFile = openFileInput("Users.txt");
+                    byte[] user = new byte[33];
+                    UsersFile.read(user);
 
-                    String sRUserID = new String(baUserID);
-                    String sRUserPwd = new String(baUserPWD);
-
-                    if(Et_LoginID.length() < 1){
-                        Toast.makeText(getApplicationContext(), "아이디를 입력해 주세요.", Toast.LENGTH_SHORT).show();
-                    }
-                    else if(Et_LoginPWD.length() < 1){
-                        Toast.makeText(getApplicationContext(), "비밀번호를 입력해 주세요.", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        if (Et_LoginID.getText().toString().equals(sRUserID.trim()) && Et_LoginPWD.getText().toString().equals(sRUserPwd.trim())) {
-                            Toast.makeText(getApplicationContext(), "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show();
-                        } else if (Et_LoginID.getText().toString().equals(sRUserID.trim()) && !Et_LoginPWD.getText().toString().equals(sRUserPwd.trim())) {
-                            Toast.makeText(getApplicationContext(), "비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show();
-                        } else if (!Et_LoginID.getText().toString().equals(sRUserID.trim()) && Et_LoginPWD.getText().toString().equals(sRUserPwd.trim())) {
-                            Toast.makeText(getApplicationContext(), "아이디가 다릅니다.", Toast.LENGTH_SHORT).show();
-                        } else if (!Et_LoginID.getText().toString().equals(sRUserID.trim()) && !Et_LoginPWD.getText().toString().equals(sRUserPwd.trim())) {
-                            Toast.makeText(getApplicationContext(), "아이디와 비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-
-
-
-                    ReadPI.close();
+                    String UserInfo[] = new String(user).split(",");
+                    String UserId = UserInfo[0]; // 아이디
+                    String UserPw = UserInfo[1]; // 비번
+                    String UserName = UserInfo[2]; // 이름
+                    // 아이디 비번 불일치
+                    if(!UserId.equals(Et_LoginID.getText().toString()) && !UserPw.equals(Et_LoginPWD.getText().toString()))
+                        Toast.makeText(getApplicationContext(), "아이디와 패스워드가 다릅니다.", Toast.LENGTH_SHORT).show();
+                    else if(!UserId.equals(Et_LoginID.getText().toString()))
+                        Toast.makeText(getApplicationContext(), "아이디가 다릅니다.", Toast.LENGTH_SHORT).show();
+                    else if(!UserPw.equals(Et_LoginPWD.getText().toString()))
+                        Toast.makeText(getApplicationContext(), "패스워드가 다릅니다.", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(getApplicationContext(), UserName+"님이 로그인 하셨습니다.", Toast.LENGTH_SHORT).show();
+                    UsersFile.close();
                 }
 
                 catch (IOException e){
-                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 }
             }
         });

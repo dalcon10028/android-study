@@ -35,7 +35,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="UserPWD"
+        android:hint="UserPW"
+        android:inputType="textPersonName"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/et_UserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="UserName"
         android:inputType="textPersonName"
         android:textSize="24sp" />
 
@@ -60,7 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Login UserPWD"
+        android:hint="Login UserPW"
         android:inputType="textPersonName"
         android:textSize="24sp" />
 
