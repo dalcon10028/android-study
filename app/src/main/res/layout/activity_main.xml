@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <CheckBox
+        android:id="@+id/ck_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="핸드폰 : 2000원, 수량 :"/>
+    <EditText
+        android:id="@+id/et_phone"
+        android:text="핸드폰 수량 입력"
+        android:textColor="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <CheckBox
+        android:id="@+id/ck_notebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="노트북 : 3000원, 수량 :"/>
+    <EditText
+        android:id="@+id/et_notebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/darker_gray"
+        android:text="노트북 수량 입력"
+        />
+    <RadioGroup
+        android:id="@+id/radioG"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rd_card"
+            android:text="카드"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/rd_cash"
+            android:text="현금"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/rd_toss"
+            android:text="계좌이체"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RadioGroup>
+    <TextView
+        android:id="@+id/tv_bank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:text="**은행 123-4567-890"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/btn_radius"
+            android:textColor="@android:color/white"
+            android:text="확인"/>
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/btn_radius"
+            android:textColor="@android:color/white"
+            android:text="초기화"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="핸드폰:"/>
+    <TextView
+        android:id="@+id/tv_notebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="노트북:"/>
+
+    <TextView
+        android:id="@+id/tv_sum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="결제금액:"/>
+
+    <TextView
+        android:id="@+id/tv_choice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="결제방법:"/>
+
+    <TextView
+        android:id="@+id/tv_timestamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="결제시간:"/>
+
+</LinearLayout>
