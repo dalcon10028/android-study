@@ -25,7 +25,7 @@
         android:id="@+id/et_UserID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:maxLength="10"
         android:hint="UserID"
         android:inputType="textPersonName"
         android:textSize="24sp" />
@@ -34,7 +34,7 @@
         android:id="@+id/et_UserPWD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:maxLength="10"
         android:hint="UserPW"
         android:inputType="textPersonName"
         android:textSize="24sp" />
@@ -43,7 +43,7 @@
         android:id="@+id/et_UserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:maxLength="10"
         android:hint="UserName"
         android:inputType="textPersonName"
         android:textSize="24sp" />
@@ -59,7 +59,7 @@
         android:id="@+id/et_LoginID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:maxLength="10"
         android:hint="Login UserID"
         android:inputType="textPersonName"
         android:textSize="24sp" />
@@ -68,7 +68,7 @@
         android:id="@+id/et_LoginPWD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:maxLength="10"
         android:hint="Login UserPW"
         android:inputType="textPersonName"
         android:textSize="24sp" />

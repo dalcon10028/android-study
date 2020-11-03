@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class FileCtrlActivity extends AppCompatActivity {
 
@@ -101,31 +102,46 @@ public class FileCtrlActivity extends AppCompatActivity {
                     if(Et_UserID.getText().length()<1 || Et_UserPWD.getText().length()<1 || Et_UserName.getText().length()<1)
                         Toast.makeText(getApplicationContext(), "빈 칸을 모두 채워주세요!", Toast.LENGTH_LONG).show();
                     else {
-                        if(Et_UserID.getText().length()>10)
-                            Toast.makeText(getApplicationContext(), "아이디를 10자 이내로 입력해주세요!", Toast.LENGTH_LONG).show();
-                        else if(Et_UserPWD.getText().length()>10)
-                            Toast.makeText(getApplicationContext(), "패스워드를 10자 이내로 입력해주세요!", Toast.LENGTH_LONG).show();
-                        else if( Et_UserName.getText().length()>10)
-                            Toast.makeText(getApplicationContext(), "이름을 10자 이내로 입력해주세요!", Toast.LENGTH_LONG).show();
-                        else {
-                            // 아이디 등록
-                            String sUser = Et_UserID.getText().toString() + ",";
-                            UsersFile.write(sUser.getBytes(), 0, sUser.length());
-                            // 비밀번호 등록
-                            String sPwd = Et_UserPWD.getText().toString() + ",";
-                            UsersFile.write(sPwd.getBytes(), 0, sPwd.length());
-                            // 이름 등록
-                            String sName = Et_UserName.getText().toString() + ",";
-                            UsersFile.write(sName.getBytes(), 0, sName.length());
+                        // 아이디 등록
+                        String sUser = Et_UserID.getText().toString() + ",";
+                        UsersFile.write(sUser.getBytes(), 0, sUser.length());
+                        // 비밀번호 등록
+                        String sPwd = Et_UserPWD.getText().toString() + ",";
+                        UsersFile.write(sPwd.getBytes(), 0, sPwd.length());
+                        // 이름 등록
+                        String sName = Et_UserName.getText().toString() + ",";
+                        UsersFile.write(sName.getBytes(), 0, sName.length());
 
-                            UsersFile.close();
-                            Toast.makeText(getApplicationContext(), "회원 등록 완료", Toast.LENGTH_LONG).show();
-                        }
+                        UsersFile.close();
+                        Toast.makeText(getApplicationContext(), "회원 등록 완료", Toast.LENGTH_LONG).show();
                     }
                 }
                 catch (IOException e){
                     e.printStackTrace();
                 }
+//                try{
+//                    FileOutputStream UsersFile = openFileOutput("Users.txt", Context.MODE_PRIVATE);
+//
+//                    if(Et_UserID.getText().length()<1 || Et_UserPWD.getText().length()<1 || Et_UserName.getText().length()<1)
+//                        Toast.makeText(getApplicationContext(), "빈 칸을 모두 채워주세요!", Toast.LENGTH_LONG).show();
+//                    else {
+//                        // 아이디 등록
+//                        String sUser = insertPadding(Et_UserID.getText().toString());
+//                        UsersFile.write(sUser.getBytes(), 0, sUser.length());
+//                        // 비밀번호 등록
+//                        String sPwd = insertPadding(Et_UserPWD.getText().toString());
+//                        UsersFile.write(sPwd.getBytes(), 0, sPwd.length());
+//                        // 이름 등록
+//                        String sName = insertPadding(Et_UserName.getText().toString());
+//                        UsersFile.write(sName.getBytes(), 0, sName.length());
+//
+//                        UsersFile.close();
+//                        Toast.makeText(getApplicationContext(), "회원 등록 완료", Toast.LENGTH_LONG).show();
+//                    }
+//                }
+//                catch (IOException e){
+//                    e.printStackTrace();
+//                }
             }
         });
 
@@ -156,7 +172,38 @@ public class FileCtrlActivity extends AppCompatActivity {
                 catch (IOException e){
                     e.printStackTrace();
                 }
+//                try{
+//                    FileInputStream UsersFile = openFileInput("Users.txt");
+//                    byte[] userid = new byte[10];
+//                    byte[] userpw = new byte[10];
+//                    byte[] username = new byte[10];
+//                    UsersFile.read(userid);
+//                    UsersFile.read(userpw);
+//                    UsersFile.read(username);
+//                    String UserId = new String(userid).trim(); // 아이디
+//                    String UserPw = new String(userpw).trim(); // 비번
+//                    String UserName = new String(username).trim(); // 이름
+//                    // 아이디 비번 불일치
+//                    if(!UserId.equals(Et_LoginID.getText().toString()) && !UserPw.equals(Et_LoginPWD.getText().toString()))
+//                        Toast.makeText(getApplicationContext(), "아이디와 패스워드가 다릅니다.", Toast.LENGTH_SHORT).show();
+//                    else if(!UserId.equals(Et_LoginID.getText().toString()))
+//                        Toast.makeText(getApplicationContext(), "아이디가 다릅니다.", Toast.LENGTH_SHORT).show();
+//                    else if(!UserPw.equals(Et_LoginPWD.getText().toString()))
+//                        Toast.makeText(getApplicationContext(), "패스워드가 다릅니다.", Toast.LENGTH_SHORT).show();
+//                    else
+//                        Toast.makeText(getApplicationContext(), UserName+"님이 로그인 하셨습니다.", Toast.LENGTH_SHORT).show();
+//                    UsersFile.close();
+//                }
+//                catch (IOException e){
+//                    e.printStackTrace();
+//                }
             }
         });
+    }
+    public static String insertPadding(String str){
+        char[] result = new char[10];
+        Arrays.fill(result, ' ');
+        for(int i=0; i<str.length(); i++)  result[i] = str.charAt(i);
+        return String.valueOf(result);
     }
 }
