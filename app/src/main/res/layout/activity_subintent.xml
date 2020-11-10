@@ -5,42 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".LayoutActivity">
 
-    <Button
-        android:id="@+id/btn_Layout"
+    <EditText
+        android:id="@+id/et_SubIntent_Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="레이아웃 테스트"
-        android:textSize="24sp" />
-
-    <Button
-        android:id="@+id/btn_File"
+        android:hint="이름: "/>
+    <CheckBox
+        android:id="@+id/CB_SubIntent_Check"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="파일 컨트롤"
-        android:textSize="24sp" />
-    <LinearLayout
+        android:text="일찍 수업을 끝내고 싶다"/>
+    <RadioGroup
+        android:id="@+id/RG_SubIntent_Radio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/btn_SubIntent"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="인텐트 컨트롤"
-            android:layout_weight="1"
-            android:textSize="24sp" />
-        <EditText
-            android:id="@+id/et_SubIntent"
+            android:text="1시간"/>
+
+        <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"/>
-    </LinearLayout>
+            android:text="2시간"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3시간"/>
+    </RadioGroup>
     <Button
-        android:id="@+id/btn_drawTest"
+        android:id="@+id/btn_SubIntent_Submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="그림 그리기"
-        android:textSize="24sp" />
+        android:text="결과"/>
 </LinearLayout>

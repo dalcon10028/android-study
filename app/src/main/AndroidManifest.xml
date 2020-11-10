@@ -18,6 +18,9 @@
         </activity>
         <activity android:name=".FileCtrlActivity"/>
         <activity android:name=".LayoutActivity" />
+        <activity android:name=".SubIntentActivity" />
+        <activity android:name=".SubReceiveActivity" />
+        <activity android:name=".DrawCtrlActivity" />
     </application>
 
 </manifest>
