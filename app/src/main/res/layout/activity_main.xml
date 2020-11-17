@@ -43,4 +43,11 @@
         android:layout_height="wrap_content"
         android:text="그림 그리기"
         android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/btn_touchTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="터치 테스트"
+        android:textSize="24sp" />
 </LinearLayout>
