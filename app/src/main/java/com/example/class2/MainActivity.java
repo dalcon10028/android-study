@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button Btn_Layout, Btn_File, Btn_SubIntent, Btn_DrawCtrl, Btn_TouchTest;
+    Button Btn_Layout, Btn_File, Btn_SubIntent, Btn_DrawCtrl, Btn_TouchTest, Btn_DBTest;
     EditText Et_SubIntent;
     private long backKeyPressTime = 0;
     @Override
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         Btn_DrawCtrl = findViewById(R.id.btn_drawTest);
         Btn_TouchTest = findViewById(R.id.btn_touchTest);
         Et_SubIntent = findViewById(R.id.et_SubIntent);
+        Btn_DBTest =  (Button) findViewById(R.id.btn_dbTest);
 
 
         Btn_Layout.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +83,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentFile = new Intent(MainActivity.this, TouchTestActivity.class);
+                startActivity(intentFile);
+            }
+        });
+
+        Btn_DBTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentFile = new Intent(MainActivity.this, httpGet.class);
                 startActivity(intentFile);
             }
         });
